@@ -1,26 +1,55 @@
-import { Card } from '../../../components/Card'
+import React, { useState } from 'react'
+import { Card, StudentType } from '../../../components/Card'
 import './styles.css'
 
-// const students: StudentType[] = [
-//   {
-//     id: 1,
-//     name: 'Nadi Duno',
-//     time: '2023-06-21 10:34:00'
-//   },
-//   {
-//     id: 2,
-//     name: 'Rodrigo Goncalves',
-//     time: '2023-06-21 10:36:00'
-//   },
-// ]
+const students: StudentType[] = [
+  {
+    id: '',
+    name: '',
+    time: ''
+  },
+]
 export function Home(){
-    return (
+  const [studentName, setStudentName] = useState('');
+  const [students, setStudents] = useState([]);
+
+  function handelAddStudent(){
+    const newStudent = {
+      id: Math.random(),
+      name: studentName,
+      time: new Date().toLocaleDateString("pt-br",{
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      })
+    };
+    setStudents([newStudent]);
+  }
+  return (
     <div className="container">
       <h1>Lista de Presença</h1>
-      <input type="text" placeholder="Digite seu nome" />
-      <button type="button">Adicionar</button>
-      <Card />
-      <Card />
+      <input 
+        type="text" 
+        placeholder="Digite seu nome"
+        onChange={e => setStudentName(e.target.value)}
+      />
+      <button 
+        type="button"
+        onClick={handelAddStudent}
+      >
+        Adicionar
+      </button>
+      
+        {/* <main> {students.map((student) => {
+          return <Card key={student.id} student={student} />
+        })}
+        // </main> */}
+       {/* { 
+        students.map(student => <Card name={student.name} student={student.time}/>)
+        } */}
+        {
+          students.map(student => <Card key={student.id} student={student} />)
+        }
     </div>
     )
 }
