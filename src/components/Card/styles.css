@@ -1,0 +1,14 @@
+.card {
+    width: 50%;
+    background: #735bf2;
+    color: #fff;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+}
+.strong {
+    font-size: 18px;
+}
