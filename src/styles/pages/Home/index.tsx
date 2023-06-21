@@ -23,7 +23,7 @@ export function Home(){
         second: '2-digit',
       })
     };
-    setStudents([newStudent]);
+    setStudents(prevState => [...prevState, newStudent]);
   }
   return (
     <div className="container">
@@ -39,14 +39,6 @@ export function Home(){
       >
         Adicionar
       </button>
-      
-        {/* <main> {students.map((student) => {
-          return <Card key={student.id} student={student} />
-        })}
-        // </main> */}
-       {/* { 
-        students.map(student => <Card name={student.name} student={student.time}/>)
-        } */}
         {
           students.map(student => <Card key={student.id} student={student} />)
         }

@@ -2,7 +2,7 @@ import './styles.css'
 export interface StudentType{
     id: string
     name: string
-    time: string
+    time: Date
 }
 interface StudentProps{
     student: StudentType
