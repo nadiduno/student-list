@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card, StudentType } from '../../../components/Card'
 import './styles.css'
 
@@ -12,12 +12,13 @@ const students: StudentType[] = [
 export function Home(){
   const [studentName, setStudentName] = useState('');
   const [students, setStudents] = useState([]);
+  const [user, setUser] = useState({ name: '', avatar: ''});
 
-  function handelAddStudent(){
+  function handleAddStudent(){
     const newStudent = {
       id: Math.random(),
       name: studentName,
-      time: new Date().toLocaleDateString("pt-br",{
+      time: new Date().toLocaleTimeString("pt-br",{
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
@@ -25,9 +26,29 @@ export function Home(){
     };
     setStudents(prevState => [...prevState, newStudent]);
   }
+  
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('https://api.github.com/users/nadiduno');
+      const data = await response.json();
+      console.log(data);
+      setUser({
+        name: data.name,
+        avatar: data.avatar_url,
+      });
+    }
+    fetchData();
+  },[]);
+
   return (
     <div className="container">
-      <h1>Lista de Presença</h1>
+      <header>
+        <h1>Lista de Presença</h1>
+        <div>
+          <strong>{user.name}</strong>
+          <img src={user.avatar} alt="" />
+        </div>
+      </header>
       <input 
         type="text" 
         placeholder="Digite seu nome"
@@ -35,7 +56,7 @@ export function Home(){
       />
       <button 
         type="button"
-        onClick={handelAddStudent}
+        onClick={handleAddStudent}
       >
         Adicionar
       </button>
