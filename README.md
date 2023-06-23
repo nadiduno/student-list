@@ -14,7 +14,7 @@ Apresenta uma lista de presença de alunos, implementando React e typescript
 <div>
   <img 
     alt="Timer Pomodoro"
-    src="https://github.com/nadiduno/timerpomodoro/blob/main/.github/ImgApp.png" 
+    src="[https://github.com/nadiduno/timerpomodoro/blob/main/.github/ImgApp.png](https://github.com/nadiduno/student-list/blob/main/.github/ImgApp.png)" 
     width="60%"
   >
   <br />
