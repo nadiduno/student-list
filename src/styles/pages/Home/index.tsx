@@ -2,10 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { Card, StudentProps } from '../../../components/Card'
 import './styles.css'
 
+interface UserAPI  {
+  name: string
+  avatar_url: string
+}
+
 export function Home(){
   const [studentName, setStudentName] = useState('');
   const [students, setStudents] = useState<StudentProps[]>([]);
-  const [user, setUser] = useState({ name: '', avatar: ''});
+  const [user, setUser] = useState<UserAPI>({} as UserAPI);
 
   function handleAddStudent(){
     const newStudent: StudentProps = {
@@ -27,7 +32,7 @@ export function Home(){
       // console.log(data);
       setUser({
         name: data.name,
-        avatar: data.avatar_url,
+        avatar_url: data.avatar_url,
       });
     }
     fetchData();
