@@ -44,7 +44,7 @@ export function Home(){
         <h1>Lista de Presença</h1>
         <div>
           <strong>{user.name}</strong>
-          <img src={user.avatar} alt="" />
+          <img src={user.avatar_url} alt="" />
         </div>
       </header>
       <input 
