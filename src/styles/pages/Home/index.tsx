@@ -1,21 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { Card, StudentType } from '../../../components/Card'
+import { Card, StudentProps } from '../../../components/Card'
 import './styles.css'
 
-const students: StudentType[] = [
-  {
-    id: '',
-    name: '',
-    time: ''
-  },
-]
 export function Home(){
   const [studentName, setStudentName] = useState('');
-  const [students, setStudents] = useState([]);
+  const [students, setStudents] = useState<StudentProps[]>([]);
   const [user, setUser] = useState({ name: '', avatar: ''});
 
   function handleAddStudent(){
-    const newStudent = {
+    const newStudent: StudentProps = {
       id: Math.random(),
       name: studentName,
       time: new Date().toLocaleTimeString("pt-br",{
@@ -31,7 +24,7 @@ export function Home(){
     async function fetchData() {
       const response = await fetch('https://api.github.com/users/nadiduno');
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       setUser({
         name: data.name,
         avatar: data.avatar_url,
@@ -61,7 +54,12 @@ export function Home(){
         Adicionar
       </button>
         {
-          students.map(student => <Card key={student.id} student={student} />)
+          students.map(student => 
+            <Card 
+              key={student.id} 
+              name={student.name} 
+              time={student.time}
+            />)
         }
     </div>
     )

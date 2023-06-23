@@ -1,17 +1,15 @@
 import './styles.css'
-export interface StudentType{
-    id: string
+export interface StudentProps{
+    id?: number
     name: string
-    time: Date
+    time: string
 }
-interface StudentProps{
-    student: StudentType
-}
-export function Card({ student }: StudentProps){
+
+export function Card( props: StudentProps){
     return(
         <div className='card'>
-            <strong>{student.name}</strong>
-            <span>{student.time}</span>
+            <strong>{props.name}</strong>
+            <span>{props.time}</span>
         </div>
     )
 }
